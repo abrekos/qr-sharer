@@ -13,13 +13,34 @@
 
     const CONFIG = {
     	scripts: [
-    		''
+    		'https://raw.githubusercontent.com/abrekos/qr-sharer/master/src/vk-qr.min.js'
     	]
     }
 
-    loadScript = ( url ) => {
+    const STYLES = `
+		.qr-sharer__button {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			z-index: 1000
+		}
 
+    `
+
+    loadScript = ( url, callback ) => {
+    	let script = window.document.createElement( 'script' )
+    	script.src = url
+    	script.onload = callback
+
+    	window.document.head.appendChild( script )
     }
 
-    loadQRLib = () => 
+    buildButton = () => {
+    	let button = window.document.createElement( 'div' )
+    	button.classList = 'qr-sharer__button'
+
+    	window.document.body.appendChild( button )
+    }
+
+
 })();
